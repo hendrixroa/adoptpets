@@ -1,0 +1,56 @@
+
+{% load staticfiles %}
+
+<html>
+    <head>
+        <link href="{% static 'bootstrap/css/bootstrap.min.css' %}"
+                  rel="stylesheet" media="screen">
+        <link rel="stylesheet" href="{% static 'css/pets.css' %}">
+        <link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    </head>
+
+                <div class="navbar">
+                <ul class="nav nav-pills">
+                    <li role="presentation" class="active"><a href="/pets">Home</a></li>
+                    {% if user.is_authenticated %}
+                    <li role="presentation"><a href="{% url 'accounts.index' %}">{{ user.username }}</a></li>
+                    <li role="presentation"><a href="{% url 'accounts.logout' %}">Logout</a></li>
+                    <li role="presentation"><a href="#">Profile</a></li>
+                    <li role="presentation"><a href="#">Messages</a></li>
+                    {% else %}
+                    <li><a href="{% url 'accounts.registro' %}">Registro</a></li>
+                    <li><a href="{% url 'accounts.login' %}">Login</a></li>
+                  {% endif %}
+                </ul>
+              </div>
+
+    <body>
+    
+                <div class="content container">
+                <div class="row">
+                <div class="col-md-8">
+
+                {% block content %}
+                
+                {% endblock %}
+
+                </div>
+                </div>
+                </div>
+            
+    </body>
+           
+
+         <div class="paginacion">  
+       <ul class="pager">
+                 {% if mascota.has_previous %}
+                    <li><a href="?page={{ mascota.previous_page_number }}">Pagina Anterior</a></li>
+                 {% endif %}
+
+                    {% if mascota.has_next %}
+                    <li><a href="?page={{ mascota.next_page_number }}">Pagina Siguiente</a></li>
+                    {% endif %}
+       </ul>
+       </div>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</html>    

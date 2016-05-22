@@ -1,0 +1,22 @@
+ {% extends 'pets/base.html' %}
+	{% block content %}
+
+    {% for mascota in mascota.object_list %}
+  <div class="post">
+
+  <div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="{{ MEDIA_URL }}{{ mascota.photo  }}" />
+      <div class="caption">
+        <h1><a href="" >{{mascota.namepet}} </a></h1>
+         <p>{{mascota.nameraza}}</p>
+         <p>{{mascota.datenac}} </p>
+        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+    {% endfor %}
+    
+{% endblock content %}
